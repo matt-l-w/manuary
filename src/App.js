@@ -3,12 +3,13 @@ import styled from 'tachyons-components';
 
 import Navbar from './components/Navbar';
 import VenueList from './components/VenueList';
+import Footer from './components/Footer';
 
 const AppContainer = styled('div')`
   w-100 flex flex-column
 `
 
-const ContentContainer = styled('div')`
+const ContentContainer = styled('main')`
   mw-100
   flex flex-column
   pa3
@@ -22,6 +23,7 @@ function App() {
       <ContentContainer>
         <VenueList />
       </ContentContainer>
+      <Footer />
     </AppContainer>
   );
 }
