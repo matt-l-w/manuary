@@ -1,4 +1,4 @@
-import { VENUES } from './venuesService';
+import VENUES from './venuesService';
 
 describe('VENUES', () => {
 

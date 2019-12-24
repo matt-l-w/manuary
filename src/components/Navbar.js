@@ -5,7 +5,7 @@ import { Heading1 } from '../elements/Heading';
 
 const NavContainer = styled('header')`
   ma0 
-  w-100 
+  mw-100 
   bw1 bb
   pa3
 `
