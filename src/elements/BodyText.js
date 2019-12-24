@@ -1,6 +1,7 @@
 import styled from 'tachyons-components';
 
 export default styled('p')`
-  sans-serif
   measure
+  sans-serif
+  ${props => props.centered ? 'tc center': undefined }
 `

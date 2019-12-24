@@ -6,7 +6,7 @@ import Label from '../../elements/Label';
 const ControlsContainer = styled('form')`
   ma0
   mw-100
-  pv2 ph4
+  pv2 ph2 ph4-m
 `
 
 const ControlPair = styled('div')`
