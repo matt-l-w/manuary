@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import lunr from 'lunr';
 
 import BodyText from '../elements/BodyText';
 import Card from '../elements/Card';
@@ -27,22 +28,43 @@ const ORDERINGS = {
   '🔽 Alphabetical': list => sortByValue(list).reverse()
 }
 
-export default () => {
-  const [order, setOrder] = useState('🔼 Alphabetical');
-  const [items, setItems] = useState(ORDERINGS[order](VENUES));
+const LUNR_INDEX = lunr(function() {
+  this.ref('venue');
+  this.field('venue');
+  this.field('title');
+  this.field('detail');
 
-  const handleOrderChange = newOrder => {
-    setOrder(newOrder);
-    setItems(ORDERINGS[newOrder](VENUES));
-  }
+  VENUES.forEach(function(venue) {
+    this.add(venue)
+  }, this)
+});
+
+export default () => {
+  const [filter, setFilter] = useState('');
+  const [order, setOrder] = useState('🔼 Alphabetical');
+  const [items, setItems] = useState(VENUES);
+
+  useEffect(() => {
+    let newItems;
+
+    if (filter !== '') {
+      let results = LUNR_INDEX.search(filter+'*');
+      newItems = VENUES.filter(venue => results.map(res => res.ref).includes(venue.venue));
+    } else {
+      newItems = VENUES;
+    }
+    newItems = ORDERINGS[order](newItems);
+    setItems(newItems);
+  }, [filter, order])
 
   return (
     <div>
-      <BodyText centered>{items.length} sumptuous offers right now!</BodyText>
+      <BodyText centered>{items.length} sumptuous {items.length > 1 ? 'offers' : 'offer' } right now!</BodyText>
       <VenueListControls 
         orderOptions={ORDERINGS} 
         selectedOrderOption={order} 
-        onOrderChange={handleOrderChange} />
+        onOrderChange={setOrder}
+        onFilterChange={setFilter} />
       <SimpleList centered wrap>
         {
           items.map((venue, n) => {
