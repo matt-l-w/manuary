@@ -3,8 +3,11 @@ import React from 'react';
 import styled from 'tachyons-components';
 import { Heading1 } from '../elements/Heading';
 
-const NavContainer = styled('div')`
-  ma0 pa3 bw1 bb
+const NavContainer = styled('header')`
+  ma0 
+  w-100 
+  bw1 bb
+  pa3
 `
 
 export default () => {
