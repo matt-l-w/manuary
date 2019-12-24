@@ -39,7 +39,10 @@ export default () => {
   return (
     <div>
       <BodyText centered>{items.length} sumptuous offers right now!</BodyText>
-      <VenueListControls orderOptions={ORDERINGS} selectedOrderOption={order} onOrderChange={handleOrderChange} />
+      <VenueListControls 
+        orderOptions={ORDERINGS} 
+        selectedOrderOption={order} 
+        onOrderChange={handleOrderChange} />
       <SimpleList centered wrap>
         {
           items.map((venue, n) => {

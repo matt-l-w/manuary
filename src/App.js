@@ -4,6 +4,7 @@ import styled from 'tachyons-components';
 import Navbar from './components/Navbar';
 import VenueList from './components/VenueList';
 import Footer from './components/Footer';
+import HomeHero from './components/HomeHero';
 
 const AppContainer = styled('div')`
   w-100 flex flex-column
@@ -21,6 +22,7 @@ function App() {
     <AppContainer id="App">
       <Navbar />
       <ContentContainer>
+        <HomeHero />
         <VenueList />
       </ContentContainer>
       <Footer />
