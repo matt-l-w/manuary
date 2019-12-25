@@ -21,7 +21,7 @@ export default ({ days }) => {
     <AvailableDaysContainer>
       <Label pad={0}>Available Days:</Label>
       <DaysContainer>
-        { DAYS.map(day => <DayElement day={day} availableDays={days} />) }
+        { DAYS.map(day => <DayElement key={day} day={day} availableDays={days} />) }
       </DaysContainer>
     </AvailableDaysContainer>
   )
@@ -40,6 +40,7 @@ function DayElement({ day, availableDays }) {
   return (
     <Day isAvailable={isAvailable}>
       {day}
+      { isAvailable ? undefined : <p hidden>Not available</p> }
     </Day>
   )
 }
