@@ -44,9 +44,16 @@ export default () => {
   const [filter, setFilter] = useState('');
   const [order, setOrder] = useState('🔼 Alphabetical');
   const [items, setItems] = useState(VENUES);
+  const [days, setDays] = useState(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]);
+
+  function handleDayChange(day) {
+    const newDays = addOrRemove(days, day);
+    setDays(newDays);
+  }
 
   useEffect(() => {
     let newItems;
+    const inSelectedDays = day => days.includes(day);
 
     if (filter !== '') {
       let results = LUNR_INDEX.search(filter+'*');
@@ -54,9 +61,10 @@ export default () => {
     } else {
       newItems = VENUES;
     }
+    newItems = newItems.filter(venue => venue.days.some(inSelectedDays));
     newItems = ORDERINGS[order](newItems);
     setItems(newItems);
-  }, [filter, order])
+  }, [filter, days, order])
 
   return (
     <div>
@@ -65,7 +73,9 @@ export default () => {
         orderOptions={ORDERINGS} 
         selectedOrderOption={order} 
         onOrderChange={setOrder}
-        onFilterChange={setFilter} />
+        onFilterChange={setFilter}
+        selectedDays={days}
+        onDayChange={handleDayChange} />
       <SimpleList centered wrap>
         {
           items.map((venue, n) => {
@@ -82,4 +92,8 @@ export default () => {
       </SimpleList>
     </div>
   )
+}
+
+function addOrRemove(arr, item) {
+  return arr.includes(item) ? arr.filter(i => i !== item) : [ ...arr, item ];
 }
