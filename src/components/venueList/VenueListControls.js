@@ -11,7 +11,7 @@ const ControlsContainer = styled('form')`
   ma0
   mw-100
   pv2 ph2 ph4-m
-  flex-ns
+  flex-ns flex-wrap
   justify-center-ns
 `
 
@@ -35,8 +35,6 @@ export default ({ orderOptions, selectedOrderOption, onOrderChange, onFilterChan
           <Label htmlFor="search" pad={2}>Search:</Label>
           <Input id="search" onChange={(e) => debounce(onFilterChange(e.target.value), 200)}/>
         </ControlPair>
-      </ControlsContainer>
-      <ControlsContainer>
         <ControlPair>
           <Label htmlFor="daySelector" pad={2}>Days:</Label>
           <DaySelector selectedDays={selectedDays} onDayChange={onDayChange} />
