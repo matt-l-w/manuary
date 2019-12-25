@@ -7,6 +7,7 @@ import { Heading2, Heading3 } from '../elements/Heading';
 import { SimpleList } from '../elements/List';
 import VENUES from '../services/venuesService';
 import VenueListControls from './venueList/VenueListControls';
+import AvailableDays from '../elements/AvailableDays';
 
 const sortByValue = list => {
   return [...list].sort((a, b) => {
@@ -72,6 +73,7 @@ export default () => {
               <Card key={n} size={5}>
                 <Heading2>{venue.venue}</Heading2>
                 <Heading3>{venue.title}</Heading3>
+                <AvailableDays days={venue.days} />
                 <BodyText>{venue.detail}</BodyText>
               </Card>
             );
