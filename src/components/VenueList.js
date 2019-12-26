@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import lunr from 'lunr';
 
 import BodyText from '../elements/BodyText';
-import Card from '../elements/Card';
-import { Heading2, Heading3 } from '../elements/Heading';
 import { SimpleList } from '../elements/List';
 import VENUES from '../services/venuesService';
 import VenueListControls from './venueList/VenueListControls';
-import AvailableDays from '../elements/AvailableDays';
+import VenueListItem from './venueList/VenueListItem';
 
 const sortByValue = list => {
   return [...list].sort((a, b) => {
@@ -77,18 +75,7 @@ export default () => {
         selectedDays={days}
         onDayChange={handleDayChange} />
       <SimpleList centered wrap>
-        {
-          items.map((venue, n) => {
-            return (
-              <Card key={n} size={5}>
-                <Heading2>{venue.venue}</Heading2>
-                <Heading3>{venue.title}</Heading3>
-                <AvailableDays days={venue.days} />
-                <BodyText>{venue.detail}</BodyText>
-              </Card>
-            );
-          })
-        }
+        { items.map((venue, n) => <VenueListItem key={n} venue={venue} />) }
       </SimpleList>
     </div>
   )
