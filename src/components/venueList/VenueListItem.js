@@ -22,7 +22,7 @@ export default ({ venue }) => {
       <Heading2>{venue.venue}</Heading2>
       <Heading3>{venue.title}</Heading3>
       <AvailableDays days={venue.days} />
-      <BodyText>{venue.detail}</BodyText>
+      <BodyText grow>{venue.detail}</BodyText>
       <LinkContainer style={{"justify-self": "end"}}>
       {
         venue.links.map(link => {
