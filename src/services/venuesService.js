@@ -104,7 +104,7 @@ const VENUES = [{
       "Thu"
     ],
     "links": [{
-      "text": "Book It NQ",
+      "text": "Book It",
       "href": "http://www.opentable.co.uk/restaurant/profile/163269?ref=17901"
     }]
   },
